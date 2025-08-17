@@ -1,0 +1,443 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.7">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="zh-CN"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;家庭电子存钱罐&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>:root{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--bg:#0f172a;<span class="Apple-converted-space">        </span>/* slate-900 */</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--panel:#111827; <span class="Apple-converted-space">    </span>/* gray-900 */</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--muted:#94a3b8; <span class="Apple-converted-space">    </span>/* slate-400 */</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--text:#e5e7eb;<span class="Apple-converted-space">      </span>/* gray-200 */</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--accent:#22c55e;<span class="Apple-converted-space">    </span>/* green-500 */</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--danger:#ef4444;<span class="Apple-converted-space">    </span>/* red-500 */</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--card:#1f2937;<span class="Apple-converted-space">      </span>/* gray-800 */</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--yellow:#facc15;<span class="Apple-converted-space">    </span>/* yellow-400 */</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>*{box-sizing:border-box}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>body{margin:0;background:linear-gradient(180deg,#0b1224,#0f172a 40%);color:var(--text);font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.container{max-width:980px;margin:0 auto;padding:24px}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.app{background:rgba(17,24,39,0.7);backdrop-filter:saturate(140%) blur(8px);border:1px solid rgba(255,255,255,0.06);border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,0.4);overflow:hidden}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:linear-gradient(90deg,rgba(34,197,94,0.15),rgba(250,204,21,0.15));}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>header h1{margin:0;font-size:20px;letter-spacing:.5px}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>header .badge{font-size:12px;color:var(--bg);background:var(--yellow);padding:4px 10px;border-radius:999px;font-weight:700}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;padding:18px}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>@media(max-width:880px){.grid{grid-template-columns:1fr}}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.card{background:var(--card);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:16px}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.row{display:flex;gap:10px;align-items:center}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.row.wrap{flex-wrap:wrap}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.muted{color:var(--muted);font-size:13px}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.balance{font-size:42px;font-weight:800;letter-spacing:1px}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.pill{border:1px dashed rgba(255,255,255,.2);padding:8px 12px;border-radius:999px;font-size:12px}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>input,select,button,textarea{border-radius:12px;border:1px solid rgba(255,255,255,0.08);background:#0b1020;color:var(--text);padding:12px 14px;font-size:15px;outline:none}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>input:focus,select:focus,textarea:focus{border-color:rgba(34,197,94,0.6);box-shadow:0 0 0 3px rgba(34,197,94,0.15)}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>button{cursor:pointer}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.btn{padding:12px 16px;border-radius:12px;border:1px solid rgba(255,255,255,0.08);background:#0c1326;font-weight:700}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.btn-primary{background:var(--accent);border-color:rgba(0,0,0,0.2);color:#0a0f1d}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.btn-danger{background:var(--danger)}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.btn-ghost{background:transparent}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.section-title{margin:0 0 10px 0;font-size:16px;letter-spacing:.3px}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.flex{display:flex;gap:12px;align-items:center}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.flex-col{display:flex;gap:12px;flex-direction:column}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.grow{flex:1}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.list{max-height:360px;overflow:auto;border-top:1px dashed rgba(255,255,255,.08);margin-top:12px}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.tx{display:flex;align-items:center;justify-content:space-between;padding:12px 6px;border-bottom:1px dashed rgba(255,255,255,.06)}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.tx .note{color:var(--muted);font-size:13px}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.tabbar{display:flex;gap:8px}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.tab{padding:8px 12px;border-radius:10px;background:#0a0f1d;border:1px solid rgba(255,255,255,0.06);font-size:13px;cursor:pointer}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.tab.active{background:rgba(34,197,94,0.18);border-color:rgba(34,197,94,0.4)}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.kid-view{display:flex;align-items:center;justify-content:center;padding:24px}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.big-balance{font-size:64px;font-weight:900;margin:0}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.coin{width:20px;height:20px;display:inline-block;border-radius:50%;background:radial-gradient(circle at 30% 30%, #fff6, #fff0), linear-gradient(180deg,#fef08a,#f59e0b);box-shadow:inset 0 -2px 6px rgba(0,0,0,.4), 0 4px 14px rgba(0,0,0,.35);vertical-align:middle;margin-right:6px}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.footer{padding:14px 20px;border-top:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:12px}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.link{color:#93c5fd}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.hidden{display:none}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="app" id="app"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;header&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="row"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="coin"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;h1&gt;家庭电子存钱罐&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="row"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;span class="badge" id="modeBadge"&gt;家长端&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/header&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;!-- 顶部 Tab：家长端 / 孩子端（只读） --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="tabbar"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="tab active" id="tab-parent"&gt;家长端&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="tab" id="tab-kid"&gt;孩子端（只读）&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="pill" id="syncStatus"&gt;离线模式&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;!-- 主体 --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="grid"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- 左：余额与操作 --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section class="card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;h3 class="section-title"&gt;当前余额&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="row wrap" style="justify-content:space-between"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="balance" id="balance"&gt;¥0.00&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="muted" id="goalText"&gt;目标：—&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="flex-col" style="align-items:flex-end"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="row"&gt;&lt;span class="muted"&gt;家庭ID：&lt;/span&gt;&lt;span id="householdIdLabel"&gt;local-demo&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="row"&gt;&lt;span class="muted"&gt;最近更新：&lt;/span&gt;&lt;span id="updatedAt"&gt;—&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="flex" style="margin-top:12px"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;input class="grow" type="number" step="0.01" id="amount" placeholder="金额（+存入 / -支出）" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button class="btn btn-primary" id="btn-add"&gt;记一笔&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button class="btn btn-danger" id="btn-reset"&gt;清空记录&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;input style="margin-top:10px;width:100%" id="note" placeholder="备注（例如：做家务奖励/买文具）"/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- 右：设置与模式 --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;aside class="card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;h3 class="section-title"&gt;设置&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="flex-col"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;label class="muted"&gt;家庭ID（同一ID的设备会实时同步）&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;input id="householdId" placeholder="例如：jz001 或 your-family" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;label class="muted"&gt;孩子目标（可选）&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;input id="goal" placeholder="例如：乐高套装 300 元" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;label class="muted"&gt;家长PIN（进入家长端需要）&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;input id="pin" placeholder="例如：1234" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button class="btn" id="btn-save-settings"&gt;保存设置&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="muted"&gt;提示：把这个网页的链接发到孩子 iPad，切换到“孩子端（只读）”。&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div style="margin-top:14px;border-top:1px dashed rgba(255,255,255,.12);padding-top:14px"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h3 class="section-title"&gt;云同步（可选）&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="muted"&gt;如果你有 Firebase 项目，填入配置即可跨设备自动同步。未配置时使用本地离线模式（只在本机可见）。&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;textarea id="firebaseConfig" rows="6" placeholder='{</p>
+<p class="p1"><span class="Apple-converted-space">  </span>"apiKey": "...",</p>
+<p class="p1"><span class="Apple-converted-space">  </span>"authDomain": "...",</p>
+<p class="p1"><span class="Apple-converted-space">  </span>"projectId": "..."</p>
+<p class="p1">}'&gt;&lt;/textarea&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="row" style="margin-top:8px"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;button class="btn" id="btn-init-fb"&gt;初始化云同步&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;button class="btn btn-ghost" id="btn-signout" title="退出匿名登录"&gt;退出云&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/aside&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;!-- 明细列表 --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;section class="card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3 class="section-title"&gt;交易明细&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="list" id="txList"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;!-- 孩子端展示 --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;section class="card kid-view hidden" id="kidView"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="flex-col" style="align-items:center;width:100%"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;p class="muted" id="kidHousehold"&gt;家庭ID：local-demo&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;h2 class="big-balance" id="kidBalance"&gt;¥0.00&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;p class="muted" id="kidGoal"&gt;目标：—&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="list" id="kidTxList" style="width:100%;max-width:580px"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="footer"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div&gt;🪙 小提示：孩子端只读；家长端需要 PIN。同步使用 Firestore（可选）。&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div&gt;&lt;a class="link" href="#" id="shareLink"&gt;复制孩子端链接&lt;/a&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- Firebase SDK（按需加载；未配置则不加载） --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const $ = (id) =&gt; document.getElementById(id);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// 简易状态</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const state = {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>useCloud: false,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>fb: null,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>householdId: localStorage.getItem('pb.householdId') || 'local-demo',</p>
+<p class="p1"><span class="Apple-converted-space">      </span>pin: localStorage.getItem('pb.pin') || '',</p>
+<p class="p1"><span class="Apple-converted-space">      </span>goal: localStorage.getItem('pb.goal') || '',</p>
+<p class="p1"><span class="Apple-converted-space">      </span>firebaseConfig: localStorage.getItem('pb.firebaseConfig') || '',</p>
+<p class="p1"><span class="Apple-converted-space">      </span>balance: 0,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>updatedAt: null,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>tx: []</p>
+<p class="p1"><span class="Apple-converted-space">    </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// UI 初始化</p>
+<p class="p1"><span class="Apple-converted-space">    </span>function renderAll(){</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('householdId').value = state.householdId;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('householdIdLabel').textContent = state.householdId;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('goal').value = state.goal;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('pin').value = state.pin;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('firebaseConfig').value = state.firebaseConfig;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('goalText').textContent = state.goal ? ('目标：' + state.goal) : '目标：—';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('kidGoal').textContent = $('goalText').textContent;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('balance').textContent = fmt(state.balance);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('kidBalance').textContent = fmt(state.balance);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('updatedAt').textContent = state.updatedAt ? new Date(state.updatedAt).toLocaleString() : '—';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('kidHousehold').textContent = '家庭ID：' + state.householdId;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>renderTxLists();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function renderTxLists(){</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const make = (item)=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const div = document.createElement('div');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>div.className = 'tx';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>div.innerHTML = `&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div&gt;${item.amount &gt;= 0 ? '➕' : '➖'} ${fmt(item.amount)}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="note"&gt;${item.note || '—'}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="note"&gt;${new Date(item.ts).toLocaleString()}&lt;/div&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>return div;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>};</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('txList').innerHTML = '';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('kidTxList').innerHTML = '';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>state.tx.slice().reverse().forEach(x=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>$('txList').appendChild(make(x));</p>
+<p class="p1"><span class="Apple-converted-space">        </span>$('kidTxList').appendChild(make(x));</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function fmt(n){</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const s = Number(n||0).toFixed(2);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return '¥' + s;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function saveLocal(){</p>
+<p class="p1"><span class="Apple-converted-space">      </span>localStorage.setItem('pb.householdId', state.householdId);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>localStorage.setItem('pb.pin', state.pin);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>localStorage.setItem('pb.goal', state.goal);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>localStorage.setItem('pb.firebaseConfig', state.firebaseConfig);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>localStorage.setItem(`pb.data.${state.householdId}`, JSON.stringify({balance:state.balance, updatedAt:state.updatedAt, tx:state.tx}));</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function loadLocal(){</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const raw = localStorage.getItem(`pb.data.${state.householdId}`);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if(raw){</p>
+<p class="p1"><span class="Apple-converted-space">        </span>try{</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const data = JSON.parse(raw);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>state.balance = data.balance||0;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>state.updatedAt = data.updatedAt||null;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>state.tx = Array.isArray(data.tx)? data.tx : [];</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}catch(e){ console.warn(e); }</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// 事件绑定</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('btn-save-settings').addEventListener('click', ()=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>state.householdId = $('householdId').value.trim() || 'local-demo';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>state.pin = $('pin').value.trim();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>state.goal = $('goal').value.trim();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>state.firebaseConfig = $('firebaseConfig').value.trim();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>saveLocal();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>updateShareLink();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>renderAll();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>toast('已保存设置');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('btn-add').addEventListener('click', ()=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if(currentMode()==='parent' &amp;&amp; !passPin()) return;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const amt = parseFloat(($('amount').value||'').replace(',','.'));</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if(isNaN(amt) || Math.abs(amt) &lt; 0.0001){ return toast('请输入有效金额'); }</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const note = $('note').value.trim();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const item = { amount: amt, note, ts: Date.now() };</p>
+<p class="p1"><span class="Apple-converted-space">      </span>state.tx.push(item);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>state.balance = Number((state.balance + amt).toFixed(2));</p>
+<p class="p1"><span class="Apple-converted-space">      </span>state.updatedAt = Date.now();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('amount').value = ''; $('note').value = '';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>onDataChanged();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('btn-reset').addEventListener('click', ()=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if(currentMode()==='parent' &amp;&amp; !passPin()) return;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if(!confirm('确定要清空所有记录吗？')) return;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>state.tx = []; state.balance = 0; state.updatedAt = Date.now();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>onDataChanged();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('tab-parent').addEventListener('click', ()=&gt;setMode('parent'));</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('tab-kid').addEventListener('click', ()=&gt;setMode('kid'));</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('btn-init-fb').addEventListener('click', initFirebaseIfPossible);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('btn-signout').addEventListener('click', async ()=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if(state.fb &amp;&amp; state.fb.auth){ await state.fb.auth.signOut().catch(()=&gt;{}); }</p>
+<p class="p1"><span class="Apple-converted-space">      </span>state.useCloud = false; $('syncStatus').textContent='离线模式'; toast('已退出云');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>$('shareLink').addEventListener('click', (e)=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">      </span>e.preventDefault();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const url = location.origin + location.pathname + `?house=${encodeURIComponent(state.householdId)}&amp;mode=kid`;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>navigator.clipboard.writeText(url).then(()=&gt;toast('已复制孩子端链接')).catch(()=&gt;alert(url));</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function passPin(){</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const pin = prompt('请输入家长PIN');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if((state.pin||'') === '' || pin === state.pin){return true}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>alert('PIN 不正确');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return false;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function setMode(m){</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const isKid = m==='kid';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('tab-parent').classList.toggle('active', !isKid);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('tab-kid').classList.toggle('active', isKid);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('modeBadge').textContent = isKid ? '孩子端' : '家长端';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.querySelector('.grid').classList.toggle('hidden', isKid);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.querySelector('.card:nth-of-type(3)').classList.toggle('hidden', isKid); // 明细</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('kidView').classList.toggle('hidden', !isKid);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>history.replaceState({}, '', makeUrl({house:state.householdId, mode:isKid?'kid':'parent'}));</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function currentMode(){</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const params = new URLSearchParams(location.search);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return (params.get('mode')||'parent')==='kid' ? 'kid':'parent';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function makeUrl(opts){</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const u = new URL(location.href);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if(opts.house!==undefined) u.searchParams.set('house', opts.house);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if(opts.mode!==undefined) u.searchParams.set('mode', opts.mode);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return u.pathname + '?' + u.searchParams.toString();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function updateShareLink(){</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$('shareLink').href = makeUrl({house:state.householdId, mode:'kid'});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function toast(msg){</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const t = document.createElement('div');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>t.textContent = msg; t.style.position='fixed'; t.style.left='50%'; t.style.top='16px'; t.style.transform='translateX(-50%)'; t.style.background='rgba(0,0,0,.7)'; t.style.padding='10px 14px'; t.style.borderRadius='10px'; t.style.fontSize='14px'; t.style.zIndex=9999; t.style.border='1px solid rgba(255,255,255,.1)';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.body.appendChild(t); setTimeout(()=&gt;t.remove(),1500);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// ===== 云同步（可选）：Firestore =====</p>
+<p class="p1"><span class="Apple-converted-space">    </span>let unsub = null;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>async function initFirebaseIfPossible(){</p>
+<p class="p1"><span class="Apple-converted-space">      </span>try{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const conf = JSON.parse($('firebaseConfig').value||'{}');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if(!conf.projectId) throw new Error('缺少 projectId');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>state.firebaseConfig = JSON.stringify(conf);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>saveLocal();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// 按需加载 SDK（ESM from gstatic）</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const [{ initializeApp }, { getFirestore, doc, onSnapshot, setDoc, getDoc }, { getAuth, signInAnonymously, onAuthStateChanged, signOut }] = await Promise.all([</p>
+<p class="p1"><span class="Apple-converted-space">          </span>import('https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js'),</p>
+<p class="p1"><span class="Apple-converted-space">          </span>import('https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js'),</p>
+<p class="p1"><span class="Apple-converted-space">          </span>import('https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js')</p>
+<p class="p1"><span class="Apple-converted-space">        </span>]);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const app = initializeApp(conf);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const db = getFirestore(app);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const auth = getAuth(app);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>state.fb = { app, db, auth, fs:{doc, onSnapshot, setDoc, getDoc}, authApi:{ signInAnonymously, onAuthStateChanged, signOut } };</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>state.useCloud = true;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>$('syncStatus').textContent = '云同步已开启';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// 匿名登录</p>
+<p class="p1"><span class="Apple-converted-space">        </span>await signInAnonymously(auth);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>setupCloudListener();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>toast('云同步初始化成功');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}catch(e){</p>
+<p class="p1"><span class="Apple-converted-space">        </span>console.warn(e);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>state.useCloud = false;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>$('syncStatus').textContent = '离线模式';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>toast('云同步初始化失败：' + (e.message||e));</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function setupCloudListener(){</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if(!state.useCloud || !state.fb) return;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if(unsub) { unsub(); unsub = null; }</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const { db, fs:{doc, onSnapshot} } = state.fb;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const ref = doc(db, 'accounts', state.householdId);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>unsub = onSnapshot(ref, (snap)=&gt;{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if(snap.exists()){</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const data = snap.data();</p>
+<p class="p1"><span class="Apple-converted-space">          </span>// 只在远端数据更新更“新鲜”时覆盖本地</p>
+<p class="p1"><span class="Apple-converted-space">          </span>if(!state.updatedAt || data.updatedAt &gt;= state.updatedAt){</p>
+<p class="p1"><span class="Apple-converted-space">            </span>state.balance = data.balance||0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>state.tx = data.tx||[];</p>
+<p class="p1"><span class="Apple-converted-space">            </span>state.goal = data.goal||state.goal;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>state.updatedAt = data.updatedAt||Date.now();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>saveLocal();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>renderAll();</p>
+<p class="p1"><span class="Apple-converted-space">          </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>async function pushToCloud(){</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if(!state.useCloud || !state.fb) return;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const { db, fs:{doc, setDoc, getDoc} } = state.fb;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const ref = doc(db, 'accounts', state.householdId);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const payload = { balance: state.balance, tx: state.tx, goal: state.goal, updatedAt: state.updatedAt||Date.now() };</p>
+<p class="p1"><span class="Apple-converted-space">      </span>await setDoc(ref, payload, { merge: true });</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>async function onDataChanged(){</p>
+<p class="p1"><span class="Apple-converted-space">      </span>renderAll();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>saveLocal();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>updateShareLink();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if(state.useCloud) await pushToCloud();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// 读取 URL</p>
+<p class="p1"><span class="Apple-converted-space">    </span>function applyUrl(){</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const p = new URLSearchParams(location.search);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const house = p.get('house');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const mode = p.get('mode');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if(house){ state.householdId = house; }</p>
+<p class="p1"><span class="Apple-converted-space">      </span>saveLocal();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>loadLocal();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>renderAll();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>updateShareLink();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>setMode(mode==='kid'?'kid':'parent');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// 启动</p>
+<p class="p1"><span class="Apple-converted-space">    </span>(function(){</p>
+<p class="p1"><span class="Apple-converted-space">      </span>loadLocal();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>renderAll();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>applyUrl();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>// 如果之前保存过 Firebase 配置，则尝试自动启动云同步</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if(state.firebaseConfig){ $('firebaseConfig').value = state.firebaseConfig; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>})();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
